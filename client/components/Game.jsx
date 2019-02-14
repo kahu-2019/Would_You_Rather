@@ -6,7 +6,6 @@ class Game extends React.Component {
   }
   state = {};
 
-nextQuestion()
 
 
   render() {
@@ -21,7 +20,7 @@ nextQuestion()
           <button>Bad Answer</button>
         </div>
         <div>
-          <button onClick={nextQuestion(props)}>Next</button>
+          <button onClick={console.log('next click')}>Next</button>
         </div>
       </div>
     );
