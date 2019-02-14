@@ -18,3 +18,4 @@ router.get('/subreddit/:subreddit', (req, res) => {
 })
 
 module.exports = router
+
