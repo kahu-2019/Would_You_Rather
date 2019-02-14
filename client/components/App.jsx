@@ -1,5 +1,6 @@
 import React from "react";
 import Game from "./Game";
+import { connect } from "tls";
 
 const App = () => (
   <div className="app">
@@ -7,5 +8,10 @@ const App = () => (
     <Game />
   </div>
 );
+const mapStateToProps = state => {
+  return {
+    gameState: state.gameState
+  }
+}
 
-export default App;
+export default connect(mapStateToProps)(App)
