@@ -1,13 +1,33 @@
-import React from "react";
-import Game from "./Game";
-import { connect } from "tls";
+import React from 'react';
 
-const App = () => (
-  <div className="app">
-    <h1>Hello world!</h1>
-    <Game />
-  </div>
-);
+import Header from './Header'
+import Start from './Start'
+import Game from './Game';
+import { connect } from 'react-redux';
+
+
+class App extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+    }
+  }
+
+  render(){
+
+    return (
+      <div>
+        <Header />
+        <Start />
+        <Game />
+      </div>
+    )
+
+  }
+
+}
+
 const mapStateToProps = state => {
   return {
     gameState: state.gameState
