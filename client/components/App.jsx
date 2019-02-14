@@ -1,5 +1,6 @@
 import React from 'react'
 import Start from './Start'
+import Header from './Header'
 
 class App extends React.Component {
   constructor () {
@@ -10,7 +11,7 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <h1>Hello</h1>
+        <Header />
         <Start />
       </div>
     )
