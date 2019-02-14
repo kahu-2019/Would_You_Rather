@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 class Game extends React.Component {
   constructor() {
@@ -6,15 +7,14 @@ class Game extends React.Component {
   }
   state = {};
 
-
+  
+  // nextQuestion = () => {dispatch(nextQuestion(props.questionNum))=>
+  // )
 
   render() {
-
     return (
       <div>
-        <div className="Question">
-        
-        </div>
+        <div className="Question" />
         <div>
           <button>Good Answer</button>
           <button>Bad Answer</button>
@@ -25,8 +25,6 @@ class Game extends React.Component {
       </div>
     );
   }
-
-
 }
 
-export default Game;
+export default connect(mapStateToProps)(Game);
