@@ -1,33 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
 
 class Game extends React.Component {
   constructor() {
     super();
+
+    state = {};
   }
-  state = {};
-
-nextQuestion()
-
+  // nextQuestion = () => {dispatch(nextQuestion(props.questionNum))=>
+  // )
 
   render() {
-
     return (
       <div>
-        <div className="Question">
-        
-        </div>
+        <div className="Question" />
         <div>
           <button>Good Answer</button>
           <button>Bad Answer</button>
         </div>
         <div>
-          <button onClick={nextQuestion(props)}>Next</button>
+          <button onClick={this.props.dispatch()}>Next</button>
         </div>
       </div>
     );
   }
-
-
 }
 
-export default Game;
+export default connect(mapStateToProps)(Game);
