@@ -38,3 +38,7 @@ export function fetchPosts(subreddit) {
       });
   };
 }
+
+export function startGame(){
+  return {}
+}

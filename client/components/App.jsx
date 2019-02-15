@@ -11,7 +11,17 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      play:null
     }
+    this.playGame = this.playGame.bind(this)
+  }
+
+  playGame(){
+    this.setState({play:true})
+  }
+
+  getState(){
+    this.playGame()
   }
 
   render(){
@@ -19,8 +29,10 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <Start />
-        <Game />
+        {!this.state.play && <Start sendStates={this.getState}/>}
+        <button onClick ={this.playGame} className="status">Play</button>
+
+        {this.state.play &&  <Game />}
       </div>
     )
 

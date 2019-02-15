@@ -15,12 +15,13 @@ class Game extends React.Component {
     return (
       <div>
         <div className="Question" />
-        <div>
-          <button>Good Answer</button>
-          <button>Bad Answer</button>
+        <p>do a lightning talk with no preparation or endure a day without Ranjit?</p>
+        <div className="flex-container">
+          <button className="button-a">Lightning talk</button>
+          <button className="button-b">Ranjit</button>
         </div>
         <div>
-          <button onClick={console.log('next click')}>Next</button>
+          <button className="status">Next</button>
         </div>
       </div>
     );
