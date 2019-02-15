@@ -1,8 +1,9 @@
-const config = require('../../knexfile').development
+const config = require('../knexfile').development
 const db = require('knex')(config)
-const getQuestion= (db)=>{
-return db("questions").
+
+const getQuestions = () => {
+  return db("questions").select()
 }
 module.exports = {
-  getQuestion
+  getQuestions
 }

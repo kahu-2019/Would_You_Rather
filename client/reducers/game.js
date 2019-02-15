@@ -1,22 +1,25 @@
 import { REQUEST_QUESTION, RECEIVE_QUESTION } from "../actions";
 const initialState = {
-  question: "",
+  questions: [],
   goodCount: 0,
   badCount: 0,
   goodAnswer: "",
   badAnswer: "",
   goodVBadCount: 0,
+  questionNum: 1,
   loading: false
 };
 const game = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_QUESTION:
       return {
-        loading: action.loading
+        ...state, loading: action.loading
       };
 
     case RECEIVE_QUESTION:
-      return;
+      return {
+        ...state, questions: action.question, loading: action.loading
+      };
 
     default:
       return state;

@@ -14,7 +14,19 @@ class Game extends React.Component {
     return (
       <div>
         <div className="Question" />
-        {/* {this.state.question} */}
+        {console.log(this.props.gameState)}
+
+        {this.props.gameState.loading && <h3>Loading..</h3>}
+
+        <ul>
+          {!this.props.gameState.loading &&
+            this.props.gameState.questions.map(item => {
+              // if(item.id == 1) {
+              //   return (<p> {item.question} </p>)
+
+              return <li>{item.question}</li>;
+            })}
+        </ul>
         <div>
           <button>Good Answer</button>
           <button>Bad Answer</button>
@@ -29,7 +41,7 @@ class Game extends React.Component {
 
 const mapReduxStoreToProps = mapReduxStore => {
   return {
-    gameState: mapReduxStore.gameState
+    gameState: mapReduxStore.game
   };
 };
 const mapDispatchToProps = dispatch => {

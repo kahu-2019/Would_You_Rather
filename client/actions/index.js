@@ -14,14 +14,16 @@ export const requestQuestion = () => {
 export const receiveQuestion = question => {
   return {
     type: RECEIVE_QUESTION,
-    question: question
+    question: question,
+    loading: false
   };
 };
 
 export const showError = errorMessage => {
   return {
     type: SHOW_ERROR,
-    errorMessage: errorMessage
+    errorMessage: errorMessage,
+    loading: false
   };
 };
 
@@ -31,8 +33,9 @@ export function fetchQuestion() {
     dispatch(requestQuestion());
 
     return request
-      .get(`/api/v1/`)
+      .get(`/api/v1/question`)
       .then(res => {
+        console.log(res)
         dispatch(receiveQuestion(res.body));
       })
       .catch(err => {
