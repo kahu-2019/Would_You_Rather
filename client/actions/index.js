@@ -7,7 +7,7 @@ export const REQUEST_QUESTION = "REQUEST_QUESTION";
 export const requestQuestion = () => {
   return {
     type: REQUEST_QUESTION,
-    questionId: questionId
+    loading: true
   };
 };
 
@@ -26,11 +26,12 @@ export const showError = errorMessage => {
 };
 
 export function fetchQuestion() {
+  console.log("action");
   return dispatch => {
     dispatch(requestQuestion());
 
     return request
-      .get(`/api`)
+      .get(`/api/v1/`)
       .then(res => {
         dispatch(receiveQuestion(res.body));
       })

@@ -6,7 +6,6 @@ class Game extends React.Component {
   constructor() {
     super();
   }
-  state = {};
 
   // nextQuestion = () => {dispatch(nextQuestion(props.questionNum))=>
   // )
@@ -15,7 +14,7 @@ class Game extends React.Component {
     return (
       <div>
         <div className="Question" />
-        {this.state.question}
+        {/* {this.state.question} */}
         <div>
           <button>Good Answer</button>
           <button>Bad Answer</button>
@@ -36,7 +35,8 @@ const mapReduxStoreToProps = mapReduxStore => {
 const mapDispatchToProps = dispatch => {
   return {
     bananas: () => {
-      dispatch(fetchQuestion);
+      console.log("compo");
+      dispatch(fetchQuestion());
     }
   };
 };
