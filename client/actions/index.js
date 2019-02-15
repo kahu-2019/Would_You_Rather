@@ -1,20 +1,20 @@
 import request from "superagent";
 
 export const SHOW_ERROR = "SHOW_ERROR";
-export const RECEIVE_POSTS = "RECEIVE_POSTS";
-export const REQUEST_POSTS = "REQUEST_POSTS";
+export const RECEIVE_QUESTION = "RECEIVE_QUESTION";
+export const REQUEST_QUESTION = "REQUEST_QUESTION";
 
-export const getQuestion = () => {
+export const requestQuestion = () => {
   return {
     type: REQUEST_QUESTION,
     questionId: questionId
   };
 };
 
-export const receivePosts = posts => {
+export const receiveQuestion = question => {
   return {
-    type: RECEIVE_POSTS,
-    posts: posts.map(post => post.data)
+    type: RECEIVE_QUESTION,
+    question: question
   };
 };
 
@@ -25,13 +25,14 @@ export const showError = errorMessage => {
   };
 };
 
-export function fetchPosts(subreddit) {
+export function fetchQuestion() {
   return dispatch => {
-    dispatch(requestPosts());
+    dispatch(requestQuestion());
+
     return request
-      .get(`/api/v1/reddit/subreddit/${subreddit}`)
+      .get(`/api`)
       .then(res => {
-        dispatch(receivePosts(res.body));
+        dispatch(receiveQuestion(res.body));
       })
       .catch(err => {
         dispatch(showError(err.message));

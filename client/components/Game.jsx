@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { fetchQuestion } from "../actions";
 
 class Game extends React.Component {
   constructor() {
@@ -7,7 +8,6 @@ class Game extends React.Component {
   }
   state = {};
 
-  
   // nextQuestion = () => {dispatch(nextQuestion(props.questionNum))=>
   // )
 
@@ -15,22 +15,33 @@ class Game extends React.Component {
     return (
       <div>
         <div className="Question" />
+        {this.state.question}
         <div>
           <button>Good Answer</button>
           <button>Bad Answer</button>
         </div>
         <div>
-          <button onClick={console.log('next click')}>Next</button>
+          <button onClick={this.props.bananas}>Next</button>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapReduxStoreToProps = mapReduxStore => {
   return {
-    gameState: state.gameState
-  }
-}
+    gameState: mapReduxStore.gameState
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    bananas: () => {
+      dispatch(fetchQuestion);
+    }
+  };
+};
 
-export default connect(mapStateToProps)(Game);
+export default connect(
+  mapReduxStoreToProps,
+  mapDispatchToProps
+)(Game);
