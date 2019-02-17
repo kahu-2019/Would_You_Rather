@@ -9,7 +9,7 @@ test('GET /api/v1/reddit/subreddit', () => {
     .reply(200, {data: {children: {msg: 'yay, bananas'}}})
 
   return request(server)
-    .get('/api/v1/reddit/subreddit/bananas')
+    .get('/api/v1/subreddit/bananas')
     .expect(200)
     .then(res => {
       scope.done()
