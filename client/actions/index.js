@@ -25,6 +25,12 @@ export const showError = errorMessage => {
   };
 };
 
+function requestPosts() {
+  return {
+    type: REQUEST_POSTS,
+  }
+}
+
 export function fetchPosts(subreddit) {
   return dispatch => {
     dispatch(requestPosts());
