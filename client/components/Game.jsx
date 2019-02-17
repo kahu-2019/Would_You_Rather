@@ -20,7 +20,7 @@ class Game extends React.Component {
           <button>Bad Answer</button>
         </div>
         <div>
-          <button onClick={console.log('next click')}>Next</button>
+          <button onClick={() => console.log('next click')}>Next</button>
         </div>
       </div>
     );
