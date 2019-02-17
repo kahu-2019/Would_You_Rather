@@ -17,5 +17,18 @@ router.get('/subreddit/:subreddit', (req, res) => {
     })
 })
 
+router.get('/questions', (req, res) => {
+  if (!req.app.locals.db) {
+    res.status(500).send('no db')
+  }
+  req.app.locals.db('questions').select()
+    .then(results => {
+      res.json({questions: results})
+    })
+    .catch(e => {
+      res.status(500).json(e)
+    })
+})
+
 module.exports = router
 
