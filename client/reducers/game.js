@@ -1,4 +1,4 @@
-import {SET_QUESTIONS, ANSWER_QUESTION} from '../actions'
+import {SET_QUESTIONS, ANSWER_QUESTION, RESET_GAME} from '../actions'
 
 const initialState = {
   questions: [],
@@ -29,7 +29,12 @@ const game = (state = initialState, action) => {
       return {...state, goodCount, badCount,
         currentQuestion: nextQuestion
       }
-
+    case RESET_GAME:
+      return {...state,
+        currentQuestion: state.questions[0],
+        goodCount: 0,
+        badCount: 0
+      }
 
     default:
       return state;

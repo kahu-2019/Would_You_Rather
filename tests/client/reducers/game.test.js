@@ -1,19 +1,7 @@
 import game from '../../../client/reducers/game'
 import {setQuestions, answerQuestion} from '../../../client/actions'
+import fakeQuestions from '../fakeQuestions.json'
 
-const sampleQuestions = [{
-    id: 1,
-    question: 'who is your daddy',
-    goodAnswer: 'shaggy',
-    badAnswer: 'scooby doo'
-  },
-  {
-    id: 2,
-    question: 'what does he do',
-    goodAnswer: 'everything',
-    badAnswer: 'nothing'
-  }
-]
 
 test('initial state', () => {
   let state = game(undefined, {})
@@ -24,13 +12,13 @@ test('initial state', () => {
 })
 
 test('load questions', () => {
-  let state = game(undefined, setQuestions(sampleQuestions))
+  let state = game(undefined, setQuestions(fakeQuestions))
   expect(state.questions.length).toBe(2)
   expect(state.currentQuestion.id).toBe(1)
 })
 
 describe('answer question', () => {
-  let newGameState = game(undefined, setQuestions(sampleQuestions))
+  let newGameState = game(undefined, setQuestions(fakeQuestions))
 
   test('stays on same question if answer invalid', () => {
     let state = game(newGameState, answerQuestion('bananas'))
