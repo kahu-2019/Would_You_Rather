@@ -1,37 +1,27 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import Header from './Header'
 import Start from './Start'
 import Game from './Game';
-import { connect } from 'react-redux';
+import {HashRouter as Router, Route} from 'react-router-dom'
 
 
-class App extends React.Component {
-
-  constructor (props) {
-    super(props)
-    this.state = {
-    }
-  }
+export default class App extends React.Component {
 
   render(){
 
     return (
-      <div>
-        <Header />
-        <Start />
-        <Game />
-      </div>
+      <Router>
+        <Fragment>
+          <Header />
+          <Route path='/' exact={true} component={Start} />
+          <Route path='/game' component={Game} />
+        </Fragment>
+      </Router>
     )
 
   }
 
 }
 
-const mapStateToProps = state => {
-  return {
-    gameState: state.gameState
-  }
-}
 
-export default connect(mapStateToProps)(App)

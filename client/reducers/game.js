@@ -1,20 +1,35 @@
-import { REQUEST_QUESTION, RECEIVE_QUESTION } from "../actions";
+import {SET_QUESTIONS, ANSWER_QUESTION} from '../actions'
+
+const initialState = {
+  questions: [],
+  currentQuestion: undefined,
+  goodCount: 0,
+  badCount: 0
+};
 
 const game = (state = initialState, action) => {
-  initialState = {
-    question: "",
-    goodCount: 0,
-    badCount: 0,
-    goodAnswer: "",
-    badAnswer: "",
-    goodVBadCount: 0
-  };
   switch (action.type) {
-    case REQUEST_QUESTION:
-      return {};
+    case SET_QUESTIONS:
+      return {
+        ...state,
+        questions: action.questions,
+        currentQuestion: action.questions[0]
+      }
 
-    case RECEIVE_QUESTION:
-      return;
+    case ANSWER_QUESTION:
+      let {goodAnswer, badAnswer} = state.currentQuestion
+      let {goodCount, badCount} = state
+      if (action.answer != goodAnswer && action.answer != badAnswer) {
+        return state
+      }
+      (action.answer == goodAnswer) ? goodCount++ : badCount++
+      let idx = state.questions.indexOf(state.currentQuestion)
+      let nextQuestion = state.questions[idx+1]
+      //TODO handle finishing all questions
+      return {...state, goodCount, badCount,
+        currentQuestion: nextQuestion
+      }
+
 
     default:
       return state;
