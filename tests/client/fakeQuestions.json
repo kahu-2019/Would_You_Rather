@@ -1,0 +1,13 @@
+[{
+    "id": 1,
+    "question": "who is your daddy",
+    "goodAnswer": "shaggy",
+    "badAnswer": "scooby doo"
+  },
+  {
+    "id": 2,
+    "question": "what does he do",
+    "goodAnswer": "everything",
+    "badAnswer": "nothing"
+  }
+]

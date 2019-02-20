@@ -1,10 +1,27 @@
-import React from 'react'
+import React, {Fragment} from 'react';
+
+import Header from './Header'
+import Start from './Start'
+import Game from './Game';
+import {HashRouter as Router, Route} from 'react-router-dom'
 
 
-const App = () => (
-  <div className='app'>
-    <h1>Hello world!</h1>
-  </div>
-)
+export default class App extends React.Component {
 
-export default App
+  render(){
+
+    return (
+      <Router>
+        <Fragment>
+          <Header />
+          <Route path='/' exact={true} component={Start} />
+          <Route path='/game' component={Game} />
+        </Fragment>
+      </Router>
+    )
+
+  }
+
+}
+
+

@@ -1,39 +1,39 @@
-import request from 'superagent'
+import request from "superagent";
 
-export const SHOW_ERROR = 'SHOW_ERROR'
-export const RECEIVE_POSTS = 'RECEIVE_POSTS'
-export const REQUEST_POSTS = 'REQUEST_POSTS'
+export * from './old'
+export const SET_QUESTIONS = "SET_QUESTIONS"
+export const ANSWER_QUESTION = "ANSWER_QUESTIONS"
+export const RESET_GAME = "RESET_GAME"
 
-export const requestPosts = () => {
+export function setQuestions(questions) {
   return {
-    type: REQUEST_POSTS
+    type: SET_QUESTIONS,
+    questions
   }
 }
 
-export const receivePosts = (posts) => {
+export function answerQuestion(answer) {
   return {
-    type: RECEIVE_POSTS,
-    posts: posts.map(post => post.data)
+    type: ANSWER_QUESTION,
+    answer
   }
 }
 
-export const showError = (errorMessage) => {
+export function resetGame() {
   return {
-    type: SHOW_ERROR,
-    errorMessage: errorMessage
+    type: RESET_GAME
   }
 }
 
-export function fetchPosts (subreddit) {
+export function fetchQuestions() {
   return (dispatch) => {
-    dispatch(requestPosts())
     return request
-      .get(`/api/v1/reddit/subreddit/${subreddit}`)
+      .get('/api/v1/questions')
       .then(res => {
-        dispatch(receivePosts(res.body))
+        dispatch(setQuestions(res.body.questions))
+      }).catch(e => {
+        console.log(e)
       })
-      .catch(err => {
-        dispatch(showError(err.message))
-      })
+
   }
 }
