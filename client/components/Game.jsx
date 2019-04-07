@@ -1,15 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
+import { getQuestions } from "../actions";
 
 class Game extends React.Component {
   constructor() {
     super();
   }
-  state = {};
+  state = {
+    
+  };
 
-  
-  // nextQuestion = () => {dispatch(nextQuestion(props.questionNum))=>
-  // )
+  componentDidMount(){
+    this.props.dispatch(getQuestions())
+  }
 
   render() {
     return (
@@ -30,7 +33,7 @@ class Game extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    gameState: state.gameState
+    questions: state.questions
   }
 }
 

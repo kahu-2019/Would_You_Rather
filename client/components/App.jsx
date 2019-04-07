@@ -4,6 +4,7 @@ import Header from './Header'
 import Start from './Start'
 import Game from './Game';
 import { connect } from 'react-redux';
+import { getQuestion } from '../api/questions';
 
 
 class App extends React.Component {
@@ -13,15 +14,12 @@ class App extends React.Component {
     this.state = {
       play:null
     }
-    this.playGame = this.playGame.bind(this)
+    this.firstQuestion = this.firstQuestion.bind(this)
   }
 
-  playGame(){
+  firstQuestion(){
     this.setState({play:true})
-  }
-
-  getState(){
-    this.playGame()
+    // this.props.dispatch(getQuestion());
   }
 
   render(){
@@ -30,7 +28,7 @@ class App extends React.Component {
       <div>
         <Header />
         {!this.state.play && <Start sendStates={this.getState}/>}
-        <button onClick ={this.playGame} className="status">Play</button>
+        <button onClick ={this.firstQuestion} className="status">Play</button>
 
         {this.state.play &&  <Game />}
       </div>

@@ -1,13 +1,19 @@
 import request from "superagent";
+import {getQuestions as apiGetQuestions} from '../api/questions'
 
-export const SHOW_ERROR = "SHOW_ERROR";
-export const RECEIVE_POSTS = "RECEIVE_POSTS";
-export const REQUEST_POSTS = "REQUEST_POSTS";
+export function getQuestions() {
+  return dispatch => {
+      return apiGetQuestions()
+      .then(questions => {
+       dispatch(saveQuestions(questions))
+    })
+  }
+}
 
-export const getQuestion = () => {
+export function saveQuestions(questions){
   return {
-    type: REQUEST_QUESTION,
-    questionId: questionId
+    type: 'SAVE_QUESTIONS',
+    questions
   };
 };
 
@@ -25,19 +31,6 @@ export const showError = errorMessage => {
   };
 };
 
-export function fetchPosts(subreddit) {
-  return dispatch => {
-    dispatch(requestPosts());
-    return request
-      .get(`/api/v1/reddit/subreddit/${subreddit}`)
-      .then(res => {
-        dispatch(receivePosts(res.body));
-      })
-      .catch(err => {
-        dispatch(showError(err.message));
-      });
-  };
-}
 
 export function startGame(){
   return {}
