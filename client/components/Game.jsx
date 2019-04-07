@@ -3,30 +3,39 @@ import { connect } from "react-redux";
 import { getQuestions } from "../actions";
 
 class Game extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
   state = {
-    
+    question: []
   };
 
   componentDidMount(){
     this.props.dispatch(getQuestions())
+    .then(() => {
+      this.setState({question:[this.props.questions[0]]})
+    })
   }
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <div className="Question" />
-        <p>do a lightning talk with no preparation or endure a day without Ranjit?</p>
-        <div className="flex-container">
-          <button className="button-a">Lightning talk</button>
-          <button className="button-b">Ranjit</button>
+        {this.state.question.map((question,i) => {
+          return(
+            <React.Fragment key={i}>
+              <p>{question.question}</p>
+              <div className="flex-container">
+                <button className="button-a">{question.goodAnswer}</button>
+                <button className="button-b">{question.badAnswer}</button>
+              </div>
+            </React.Fragment>
+          )
+        })}
+          <div>
+            <button className="status">Next</button>
         </div>
-        <div>
-          <button className="status">Next</button>
-        </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
